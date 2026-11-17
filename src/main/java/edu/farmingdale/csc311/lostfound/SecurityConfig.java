@@ -18,7 +18,9 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
 
-            .formLogin(form -> form.permitAll())
+            .formLogin(form -> form
+                    .loginPage("/login")
+                    .permitAll())
             .logout(logout -> logout.permitAll())
             // the H2 console doesn't send CSRF tokens and runs inside a frame
             .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
